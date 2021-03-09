@@ -916,7 +916,8 @@ class MatrixHttpApi {
         if ($this->useAuthorizationHeader) {
             $headers['Authorization'] = sprintf('Bearer %s', $this->token);
         } else {
-            $queryParams['access_token'] = $this->token;
+            if ($this->token)
+                $queryParams['access_token'] = $this->token;
         }
 
         if ($this->identity) {
@@ -1446,5 +1447,8 @@ class MatrixHttpApi {
         $this->token = $token;
     }
 
+    public function setUseAuthorizationHeader(bool $auth) {
+        $this->useAuthorizationHeader = $auth;
+    }    
 
 }
