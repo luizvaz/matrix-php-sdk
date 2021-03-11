@@ -98,10 +98,16 @@ class MatrixHttpApi {
         $this->useAuthorizationHeader = $useAuthorizationHeader;
     }
 
-    public function getClient() Client {
+    /**
+     * @return Client
+     */
+    public function getClient() {
         return $this->client;
     }
 
+    /**
+     * @param Client $client
+     */
     public function setClient(Client $client) {
         $this->client = $client;
     }
