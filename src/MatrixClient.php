@@ -163,6 +163,21 @@ class MatrixClient {
         return $this->postRegistration($response);
     }
 
+    /**
+     * Register a new account with Admin API V2.
+     * ref: https://github.com/matrix-org/synapse/blob/develop/docs/admin_api/user_admin_api.rst#id19
+     *
+     * @param string $username Account username
+     * @param string $password Account password
+     * @return string|null Access Token
+     * @throws Exceptions\MatrixException
+     */
+    public function registerV2(string $username, string $password): ?string {
+        $response = $this->api->registerV2($username, $password);
+
+        return $this->postRegistration($response);
+    }
+
     protected function postRegistration(array $response) {
         $this->userId = array_get($response, 'user_id');
         $this->token = array_get($response, 'access_token');
