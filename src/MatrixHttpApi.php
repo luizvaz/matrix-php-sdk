@@ -212,11 +212,7 @@ class MatrixHttpApi {
             'admin' => $isAdmin
         ];
 
-        if ($isAdmin) {
-            true;
-        }
-
-        return $this->send('PUT',"$username", $content,null,null,"/_synapse/admin/v2/users/");
+        return $this->send('PUT', "$username", $content, [], [], "/_synapse/admin/v2/users/");
     }
 
     /**
