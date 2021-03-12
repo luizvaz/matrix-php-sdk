@@ -194,6 +194,30 @@ class MatrixHttpApi {
 
         return $this->send('POST', '/register', $content, ['kind' => $kind]);
     }
+    
+    /**
+     * Register a new account with Admin API V2.
+     * ref: https://github.com/matrix-org/synapse/blob/develop/docs/admin_api/user_admin_api.rst#id19
+     *
+     * @param string $username The localpart of a Matrix ID.
+     * @param string $password The desired password of the account.
+     * @param bool $isAdmin If account is Admin.
+     * @return array|string
+     * @throws MatrixException
+     */
+    public function registerV2(string $username, string $password, bool $isAdmin = false)
+    {
+        $content = [
+            'password' => $password,
+            'admin' => $isAdmin
+        ];
+
+        if ($isAdmin) {
+            true;
+        }
+
+        return $this->send('PUT',"$username", $content,null,null,"/_synapse/admin/v2/users/");
+    }
 
     /**
      * Perform /login.
